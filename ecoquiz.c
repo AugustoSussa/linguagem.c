@@ -1,189 +1,130 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <time.h>
 #include <locale.h>
 
-typedef struct {
-    char pergunta[100];
-    char opcoes[4][50];
-    char resposta;
-} Pergunta;
-
-void embaralhar(char *opcoes[]) {
-    
-    int i = 0;
-    while (i < 3) {
-        int j = rand() % 3;
-        char *temp = opcoes[i];
-        opcoes[i] = opcoes[j];
-        opcoes[j] = temp;
-        i++;
-    }
-}
-
-
-void gerarPerguntas(Pergunta perguntas[]) {
- 
-    
-    strcpy(perguntas[0].pergunta, "Qual È o processo pelo qual as plantas convertem a luz solar em energia?");
-    strcpy(perguntas[0].opcoes[0], "FotossÌntese");
-    strcpy(perguntas[0].opcoes[1], "RespiraÁ„o");
-    strcpy(perguntas[0].opcoes[2], "FermentaÁ„o");
-    strcpy(perguntas[0].opcoes[3], "TranspiraÁ„o");
-    perguntas[0].resposta = 'A';
-
-strcpy(perguntas[1].pergunta, "Qual È o maior oceano do mundo?");
-strcpy(perguntas[1].opcoes[0], "Atl‚ntico");
-strcpy(perguntas[1].opcoes[1], "Õndico");
-strcpy(perguntas[1].opcoes[2], "¡rtico");
-strcpy(perguntas[1].opcoes[3], "PacÌfico");
-perguntas[1].resposta = 'D';
-
-// 3
-strcpy(perguntas[2].pergunta, "Qual È o Ûrg„o respons·vel pela produÁ„o de insulina no corpo humano?");
-strcpy(perguntas[2].opcoes[0], "P‚ncreas");
-strcpy(perguntas[2].opcoes[1], "FÌgado");
-strcpy(perguntas[2].opcoes[2], "CoraÁ„o");
-strcpy(perguntas[2].opcoes[3], "Rins");
-perguntas[2].resposta = 'A';
-
-// 4
-strcpy(perguntas[3].pergunta, "Qual È o animal terrestre mais r·pido do mundo?");
-strcpy(perguntas[3].opcoes[0], "Guepardo");
-strcpy(perguntas[3].opcoes[1], "Leopardo");
-strcpy(perguntas[3].opcoes[2], "AntÌlope");
-strcpy(perguntas[3].opcoes[3], "Lobo");
-perguntas[3].resposta = 'A';
-
-// 5
-strcpy(perguntas[4].pergunta, "Qual È o maior Ûrg„o do corpo humano?");
-strcpy(perguntas[4].opcoes[0], "CÈrebro");
-strcpy(perguntas[4].opcoes[1], "Pele");
-strcpy(perguntas[4].opcoes[2], "FÌgado");
-strcpy(perguntas[4].opcoes[3], "Intestino");
-perguntas[4].resposta = 'B';
-
-// 6
-strcpy(perguntas[5].pergunta, "Qual È a capital do Brasil?");
-strcpy(perguntas[5].opcoes[0], "Rio de Janeiro");
-strcpy(perguntas[5].opcoes[1], "BrasÌlia");
-strcpy(perguntas[5].opcoes[2], "S„o Paulo");
-strcpy(perguntas[5].opcoes[3], "Belo Horizonte");
-perguntas[5].resposta = 'B';
-
-// 7
-strcpy(perguntas[6].pergunta, "Qual È o elemento quÌmico mais abundante na crosta terrestre?");
-strcpy(perguntas[6].opcoes[0], "Ferro");
-strcpy(perguntas[6].opcoes[1], "OxigÍnio");
-strcpy(perguntas[6].opcoes[2], "SilÌcio");
-strcpy(perguntas[6].opcoes[3], "Carbono");
-perguntas[6].resposta = 'B';
-
-// 8
-strcpy(perguntas[7].pergunta, "Qual È o maior planeta do sistema solar?");
-strcpy(perguntas[7].opcoes[0], "VÍnus");
-strcpy(perguntas[7].opcoes[1], "Marte");
-strcpy(perguntas[7].opcoes[2], "J˙piter");
-strcpy(perguntas[7].opcoes[3], "Saturno");
-perguntas[7].resposta = 'C';
-
-// 9
-strcpy(perguntas[8].pergunta, "Qual È o maior animal do mundo?");
-strcpy(perguntas[8].opcoes[0], "Elefante");
-strcpy(perguntas[8].opcoes[1], "Tubar„o-baleia");
-strcpy(perguntas[8].opcoes[2], "Baleia-azul");
-strcpy(perguntas[8].opcoes[3], "Girafa");
-perguntas[8].resposta = 'C';
-
-// 10
-strcpy(perguntas[9].pergunta, "Quantos ossos tem um ser humano adulto?");
-strcpy(perguntas[9].opcoes[0], "206");
-strcpy(perguntas[9].opcoes[1], "300");
-strcpy(perguntas[9].opcoes[2], "150");
-strcpy(perguntas[9].opcoes[3], "100");
-perguntas[9].resposta = 'A';
-
-// 11
-strcpy(perguntas[10].pergunta, "Qual È o ·cido presente no lim„o?");
-strcpy(perguntas[10].opcoes[0], "¡cido cÌtrico");
-strcpy(perguntas[10].opcoes[1], "¡cido sulf˙rico");
-strcpy(perguntas[10].opcoes[2], "¡cido acÈtico");
-strcpy(perguntas[10].opcoes[3], "¡cido clorÌdrico");
-perguntas[10].resposta = 'A';
-
-// 12
-strcpy(perguntas[11].pergunta, "Qual È o ˙nico mamÌfero capaz de voar?");
-strcpy(perguntas[11].opcoes[0], "Pombo");
-strcpy(perguntas[11].opcoes[1], "Andorinha");
-strcpy(perguntas[11].opcoes[2], "Morcego");
-strcpy(perguntas[11].opcoes[3], "Borboleta");
-perguntas[11].resposta = 'C';
-
-// 13
-strcpy(perguntas[12].pergunta, "Qual È o maior deserto do mundo?");
-strcpy(perguntas[12].opcoes[0], "Deserto do Saara");
-strcpy(perguntas[12].opcoes[1], "Deserto de Atacama");
-strcpy(perguntas[12].opcoes[2], "Deserto da Ar·bia");
-strcpy(perguntas[12].opcoes[3], "Deserto de Gobi");
-perguntas[12].resposta = 'A';
-
-// 14
-strcpy(perguntas[13].pergunta, "Qual È o paÌs com a maior ·rea territorial do mundo?");
-strcpy(perguntas[13].opcoes[0], "Canad·");
-strcpy(perguntas[13].opcoes[1], "R˙ssia");
-strcpy(perguntas[13].opcoes[2], "China");
-strcpy(perguntas[13].opcoes[3], "Estados Unidos");
-perguntas[13].resposta = 'B';
-
-    embaralhar(perguntas[0].opcoes);
-}
-
-void apresentarPergunta(Pergunta pergunta) {
-    printf("%s\n", pergunta.pergunta);
-    printf("A) %s\n", pergunta.opcoes[0]);
-    printf("B) %s\n", pergunta.opcoes[1]);
-    printf("C) %s\n", pergunta.opcoes[2]);
-    printf("D) %s\n", pergunta.opcoes[3]);
-}
-
-int verificarResposta(char respostaUsuario, char respostaCorreta) {
-    return toupper(respostaUsuario) == respostaCorreta;
-}
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
 
 int main() {
-    setlocale(LC_ALL, "Portuguese");
+	setlocale(LC_ALL, "Portuguese");
+    int score = 0;
+    int OP, RT;
+    do{
+    
+    system ("cls");
+    printf("Bem-vindo ao Quiz de Ecologia!\n\n");
 
-    srand(time(NULL));
-
-    Pergunta perguntas[15];
-
-    gerarPerguntas(perguntas);
-
-    int pontuacao = 0;
-    int i = 0;
-
-    while (i < 15) {
-        printf("\nPergunta %d:\n", i + 1);
-        apresentarPergunta(perguntas[i]);
-
-        char respostaUsuario;
-        printf("Escolha a opÁ„o correta (A, B, C ou D): ");
-        scanf(" %c", &respostaUsuario);
-
-        if (verificarResposta(respostaUsuario, perguntas[i].resposta)) {
-            printf("Resposta correta!\n");
-            pontuacao++;
-        } else {
-            printf("Resposta incorreta! A resposta correta era: %c\n", perguntas[i].resposta);
-        }
-
-        i++;
+    // Pergunta 1
+    printf("Escolha uma dificuldade:");
+    printf ("\n Digite 1 -> f√°cil\n");
+	printf ("\n Digite 2 -> dificil \n");
+	scanf ("%d", &OP);
+	if (OP == 1){
+    printf("\nPergunta 1: O que √© um ecossistema?\n");
+    printf("a) Uma esp√©cie animal\n");
+    printf("b) Um ambiente natural e suas intera√ß√µes\n");
+    printf("c) Uma unidade de medida para polui√ß√£o\n\n");
+    char resposta1;
+    printf("Escolha a, b ou c: ");
+    scanf(" %c", &resposta1);
+    if (resposta1 == 'b' || resposta1 == 'B') {
+        printf(GREEN "Correto!\n" RESET);
+        score++;
+    } else {
+        printf(RED "Incorreto! A resposta correta √© b.\n" RESET);
     }
+    printf("\n");
 
-    printf("\nPontuaÁ„o final: %d\n", pontuacao);
+    // Pergunta 2
+    printf("Pergunta 2: Qual √© a principal fonte de energia para a maioria dos ecossistemas?\n");
+    printf("a) Eletricidade\n");
+    printf("b) Luz solar\n");
+    printf("c) Combust√≠veis f√≥sseis\n\n");
+    char resposta2;
+    printf("Escolha a, b ou c: ");
+    scanf(" %c", &resposta2);
+    if (resposta2 == 'b' || resposta2 == 'B') {
+        printf(GREEN "Correto!\n" RESET);
+        score++;
+    } else {
+        printf(RED "Incorreto! A resposta correta √© b.\n" RESET);
+    }
+    printf("\n");
 
-    return 0;
+    // Pergunta 3
+    printf("Pergunta 3: Qual dos seguintes n√£o √© um n√≠vel tr√≥fico em uma cadeia alimentar?\n");
+    printf("a) Produtores\n");
+    printf("b) Consumidores\n");
+    printf("c) Predadores\n\n");
+    char resposta3;
+    printf("Escolha a, b ou c: ");
+    scanf(" %c", &resposta3);
+    if (resposta3 == 'c' || resposta3 == 'C') {
+        printf(GREEN "Correto!\n" RESET);
+        score++;
+    } else {
+        printf(RED "Incorreto! A resposta correta √© c.\n" RESET);
+    }
+    printf("\n");
+
+    // Pergunta 4
+    printf("Pergunta 4: O que √© a biodiversidade?\n");
+    printf("a) A variedade de vida em um √∫nico ecossistema\n");
+    printf("b) A variedade de vida em todo o planeta\n");
+    printf("c) A quantidade de √°gua dispon√≠vel em um ecossistema\n\n");
+    char resposta4;
+    printf("Escolha a, b ou c: ");
+    scanf(" %c", &resposta4);
+    if (resposta4 == 'b' || resposta4 == 'B') {
+        printf(GREEN "Correto!\n" RESET);
+        score++;
+    } else {
+        printf(RED "Incorreto! A resposta correta √© b.\n" RESET);
+    }
+    printf("\n");
+
+    // Pergunta 5
+    printf("Pergunta 5: O que √© um bioma?\n");
+    printf("a) Uma esp√©cie de planta\n");
+    printf("b) Uma regi√£o geograficamente definida com um clima caracter√≠stico e uma comunidade de organismos adaptados a ele\n");
+    printf("c) Um tipo espec√≠fico de solo\n\n");
+    char resposta5;
+    printf("Escolha a, b ou c: ");
+    scanf(" %c", &resposta5);
+    if (resposta5 == 'b' || resposta5 == 'B') {
+        printf(GREEN "Correto!\n" RESET);
+        score++;
+    } else {
+        printf(RED "Incorreto! A resposta correta √© b.\n" RESET);
+    }
+    printf("\n");
+
+    // Exibir pontua√ß√£o final
+    printf("Parab√©ns! Voc√™ completou o quiz de ecologia.\n");
+    printf("Sua pontua√ß√£o final √©: %d/5\n", score);
+	}
+	if (OP == 2){
+	// Pergunta 1
+    printf("Pergunta 1: Qual √© o termo usado para descrever o processo pelo qual um ecossistema passa por mudan√ßas naturais, substituindo esp√©cies ao longo do tempo?\n");
+    printf("a) Sucess√£o ecol√≥gica\n");
+    printf("b) Resili√™ncia ambiental\n");
+    printf("c) Reciclagem de nutrientes\n");
+    printf("d) Mitiga√ß√£o clim√°tica\n");
+    printf ("e) Fragmenta√ß√£o de habitat\n");
+    char resposta5;
+    printf("Escolha a, b ou c: \n");
+    scanf(" %c", &resposta5);
+    if (resposta5 == 'b' || resposta5 == 'B') {
+        printf(GREEN "\nCorreto!\n" RESET);
+        score ++, score ++;
+    } else {
+        printf(RED "\nIncorreto! A resposta correta √© b.\n" RESET);
+    }
+    printf("Parab√©ns! Voc√™ completou o quiz de ecologia.\n");
+    printf("Sua pontua√ß√£o final √©: %d/5\n", score);
 }
-
+	printf ("\n Deseja fazer novamente, pressione 1 \n Se quiser sair, pressione qualquer tecla \n");
+	scanf ("%d", &RT);
+} 	
+    while (RT == 1);
+}
